@@ -1,6 +1,6 @@
 module Web
   class SitesController < ApplicationController
-    # before_action { authorize :sites }
+    before_action { authorize :sites }
 
     def home
     end
