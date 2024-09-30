@@ -36,6 +36,7 @@ end
 
 gem "devise"
 gem "devise-i18n"
+gem "discard"
 gem "draper"
 gem "haml-rails"
 gem "i18n-tasks"
