@@ -1,0 +1,19 @@
+- model_class = Restaurant
+- content_for :title do
+  %h1= t '.title', :default => model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :name
+  %dd.col-sm-9= @restaurant.name
+  %dt.col-sm-3= model_class.human_attribute_name :launch_date
+  %dd.col-sm-9= @restaurant.launch_date
+
+- if policy(@restaurant).index?
+  = link_to admin_restaurants_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', :default => t("helpers.links.back"))
+
+- if policy(@restaurant).edit?
+  = link_to edit_admin_restaurant_path(@restaurant), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', :default => t("helpers.links.edit"))

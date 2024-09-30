@@ -3,5 +3,6 @@ controller :admin do
 end
 
 resources :users
+resources :restaurants
 
 root "admin#admin"

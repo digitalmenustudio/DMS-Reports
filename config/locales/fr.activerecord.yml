@@ -2,22 +2,8 @@
 fr:
   activerecord:
     attributes:
-      position:
-        entry: Prix d'entré
-        size: Nombre de stocks
-      stock:
-        api_symbol: Symbole pour l'Api
-        distribution_list:
-          monthly: Mensuel
-          quarterly: Trimestriel
-        dividend: Dividende
-        price: Prix
-        status_list:
-          buying: Achat
-          selling: Vendre
-          watching: Surveille
-        symbol: Symbole
-        yield: Yield
+      restaurant:
+        launch_date: Date de lancement
       user:
         first_name: Prénom
         last_name: Nom de famille
@@ -28,15 +14,10 @@ fr:
         role_list:
           admin: Administrateur
           user: User
-      wallet:
-        cash: Argent
-        name: Nom de la stratégie
-        position: Positions
-        user: Utilisateur
     models:
-      position:
-        one: Position
-        other: Positions
+      restaurant:
+        one: Restaurant
+        other: Restaurants
       stock:
         one: Stock
         other: Stocks

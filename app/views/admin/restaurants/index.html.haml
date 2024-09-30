@@ -1,0 +1,33 @@
+- model_class = Restaurant
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+
+- content_for :title_actions do
+  - if policy(Restaurant).new?
+    = link_to new_admin_restaurant_url, class: "btn btn-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+
+= render "admin/shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :name, model_class.human_attribute_name(:name)
+      %th= sortable_header :launch_date, model_class.human_attribute_name(:launch_date)
+      %th
+
+  %tbody
+    - restaurants.each do |restaurant|
+      %tr
+        %td= link_to restaurant.name, admin_restaurant_url(restaurant)
+        %td= restaurant.launch_date
+        %td.text-nowrap
+          - if policy(restaurant).edit?
+            = link_to edit_admin_restaurant_url(restaurant), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
+              %i.fa-solid.fa-pen
+          - if policy(restaurant).destroy?
+            = link_to admin_restaurant_url(restaurant), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?"  } do
+              %i.fa-solid.fa-trash
+
+= add_pagination @users
