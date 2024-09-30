@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  # devise_for :users
 
   concern :localizable do
     put :change_locale, controller: "application"
