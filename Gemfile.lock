@@ -361,6 +361,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  devise
   devise-i18n
   draper
   factory_bot_rails

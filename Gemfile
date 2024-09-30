@@ -34,6 +34,7 @@ group :test do
   gem "simplecov-console", require: false
 end
 
+gem "devise"
 gem "haml-rails"
 gem "draper"
 gem "i18n-tasks"
