@@ -23,6 +23,9 @@
         %td= link_to restaurant.name, admin_restaurant_url(restaurant)
         %td= restaurant.launch_date
         %td.text-nowrap
+          - if policy(User).switch_restaurant? && current_user.restaurant_id != restaurant.id
+            = link_to switch_restaurant_admin_user_url(current_user, restaurant_id: restaurant.id), class: "btn btn-warning btn-sm mx-1", data: { "turbo-method": :put } do
+              %i.fa-solid.fa-right-to-bracket
           - if policy(restaurant).edit?
             = link_to edit_admin_restaurant_url(restaurant), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
               %i.fa-solid.fa-pen

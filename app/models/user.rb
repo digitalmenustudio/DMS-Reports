@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   searchable :email, :first_name, :last_name
 
-  has_many :wallets, dependent: :destroy
+  belongs_to :restaurant
 
   validates :role, :first_name, :last_name, presence: true
 

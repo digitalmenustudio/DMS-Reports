@@ -1,7 +1,7 @@
 module Admin
   class UsersController < ApplicationController
 
-    before_action :set_user, only: %i[edit update show login_as]
+    before_action :set_user, only: %i[edit update show switch_restaurant]
     before_action -> { authorize @user || User }
 
     decorates_assigned :user, :users
@@ -27,6 +27,17 @@ module Admin
         render :edit, status: :unprocessable_entity
       end
     end
+
+    def switch_restaurant
+      restaurant = Restaurant.find(params[:restaurant_id])
+      
+      if @user.update(restaurant_id: restaurant.id)
+        redirect_to admin_restaurants_path, notice: "Restaurant switched successfully."
+      else
+        redirect_to admin_restaurants_path, alert: "Unable to switch restaurant."
+      end
+    end
+    
 
     private
 

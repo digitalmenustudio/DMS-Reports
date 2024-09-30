@@ -12,6 +12,8 @@
       .col-md-6
         = f.input :email, required: true, input_html: { autocomplete: "email" }
       .col-md-6
+        = f.input :restaurant_id, collection: Restaurant.all, label_method: ->(u) { "#{u.name}" }, value_method: :id
+      .col-md-6
         = f.input :password,
           required: true,
           hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
