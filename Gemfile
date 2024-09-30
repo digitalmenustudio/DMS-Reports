@@ -35,12 +35,14 @@ group :test do
 end
 
 gem "devise"
-gem "haml-rails"
-gem "draper"
-gem "i18n-tasks"
 gem "devise-i18n"
+gem "draper"
+gem "haml-rails"
+gem "i18n-tasks"
 gem "pg_search"
 gem "pundit"
 gem "rails-i18n", "~> 7.0.0"
 gem "simple_form"
 gem "translate_enum"
+gem "will_paginate"
+gem "will_paginate-bootstrap-style"
