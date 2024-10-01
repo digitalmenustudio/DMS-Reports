@@ -24,6 +24,9 @@ fr:
         day_of_week: Jour de la semaine
         time_frame: Plage horaire
         visitors: Visiteurs
+      tab_click:
+        tab_name: Nom de l'onglet
+        clicks: Clics
     models:
       restaurant:
         one: Restaurant
@@ -42,7 +45,10 @@ fr:
         other: Visites par jour
       menu_access_log:
         one: Journal d'accès au menu
-        other: Journal d'accès au menu
+        other: Journaux d'accès au menu
+      tab_click:
+        one: Clic sur onglet
+        other: Clics sur onglets
     notices:
       default:
         archived_successfully: "%{model} archivé(e) avec succès"

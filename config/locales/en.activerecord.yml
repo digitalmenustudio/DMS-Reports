@@ -24,6 +24,9 @@ en:
         day_of_week: Day of the Week
         time_frame: Time Frame
         visitors: Visitors
+      tab_click:
+        tab_name: Tab Name
+        clicks: Clicks
     models:
       restaurant:
         one: Restaurant
@@ -37,6 +40,9 @@ en:
       menu_access_log:
         one: Menu Access Log
         other: Menu Access Logs
+      tab_click:
+        one: Tab Click
+        other: Tab Clicks
     notices:
       default:
         archived_successfully: "%{model} archived successfully"

@@ -1,0 +1,33 @@
+- model_class = TabClick
+- content_for :title do
+  %h1= model_class.model_name.human(count: 2)
+
+- content_for :title_actions do
+  - if policy(TabClick).create?
+    = link_to new_admin_tab_click_url, class: "btn btn-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+
+= render "admin/shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :tab_name, model_class.human_attribute_name(:tab_name)
+      %th= sortable_header :clicks, model_class.human_attribute_name(:clicks)
+      %th
+
+  %tbody
+    - tab_clicks.each do |tab_click|
+      %tr
+        %td= link_to tab_click.tab_name, admin_tab_click_url(tab_click)
+        %td= tab_click.clicks
+        %td.text-nowrap
+          - if policy(tab_click).edit?
+            = link_to edit_admin_tab_click_url(tab_click), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
+              %i.fa-solid.fa-pen
+          - if policy(tab_click).destroy?
+            = link_to admin_tab_click_url(tab_click), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+              %i.fa-solid.fa-trash
+
+= add_pagination @tab_clicks

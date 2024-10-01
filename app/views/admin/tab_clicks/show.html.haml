@@ -1,0 +1,24 @@
+- model_class = TabClick
+- content_for :title do
+  %h1= t '.title', default: model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :tab_name
+  %dd.col-sm-9= @tab_click.tab_name
+  %dt.col-sm-3= model_class.human_attribute_name :clicks
+  %dd.col-sm-9= @tab_click.clicks
+
+- if policy(@tab_click).index?
+  = link_to admin_tab_clicks_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', default: t("helpers.links.back"))
+
+- if policy(@tab_click).edit?
+  = link_to edit_admin_tab_click_path(@tab_click), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', default: t("helpers.links.edit"))
+
+- if policy(@tab_click).destroy?
+  = link_to admin_tab_click_path(@tab_click), class: "btn btn-danger mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+    %i.fa-solid.fa-trash
+    = t('.destroy', default: t("helpers.links.destroy"))
