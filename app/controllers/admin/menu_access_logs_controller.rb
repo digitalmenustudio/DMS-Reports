@@ -42,8 +42,8 @@ module Admin
       end
   
       def destroy
-        @item.destroy
-        redirect_to admin_items_path, notice: destroy_successful_notice
+        @menu_access_log.destroy
+        redirect_to admin_daily_visits_path, notice: destroy_successful_notice
       end
 
       private
