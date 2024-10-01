@@ -13,7 +13,13 @@ fr:
         role: Rôle
         role_list:
           admin: Administrateur
-          user: User
+          user: Utilisateur
+      daily_visit:
+        date: Date
+        first_time_visitors: Visiteurs premières visites
+        recurring_visitors: Visiteurs récurrents
+        average_time_spent: Temps moyen passé (en minutes)
+        weekday: Journée
     models:
       restaurant:
         one: Restaurant
@@ -27,6 +33,9 @@ fr:
       wallet:
         one: Portefeuille
         other: Portefeuilles
+      daily_visit:
+        one: Visite par jour
+        other: Visites par jour
     notices:
       default:
         archived_successfully: "%{model} archivé(e) avec succès"
@@ -52,4 +61,4 @@ fr:
       single_page_html:
         one: Affichage de 1-1 sur 1 %{model}
         other: Affichage de %{count} %{model}
-        zero: Aucune entrée trouvé
+        zero: Aucune entrée trouvée

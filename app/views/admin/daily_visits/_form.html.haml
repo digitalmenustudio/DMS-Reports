@@ -1,0 +1,19 @@
+= simple_form_for [:admin, @daily_visit] do |f|
+  .row.pb-2
+    .col-md-6
+      = f.input :date, input_html: { autocomplete: "off", placeholder: "YYYY-MM-DD" }
+    .col-md-6
+      = f.input :first_time_visitors, input_html: { autocomplete: "off" }
+
+  .row.pb-2
+    .col-md-6
+      = f.input :recurring_visitors, input_html: { autocomplete: "off" }
+    .col-md-6
+      .row
+        .col-md-6
+          = f.input :minutes, label: "Minutes", input_html: { autocomplete: "off", value: (@daily_visit.average_time_spent.to_i) }
+        .col-md-6
+          = f.input :seconds, label: "Seconds", input_html: { autocomplete: "off", value: ((@daily_visit.average_time_spent % 1) * 60).to_i }
+
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), admin_daily_visits_path, class: "btn btn-outline-secondary"

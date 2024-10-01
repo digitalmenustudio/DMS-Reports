@@ -1,0 +1,39 @@
+- model_class = DailyVisit
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+
+- content_for :title_actions do
+  - if policy(DailyVisit).create?
+    = link_to new_admin_daily_visit_url, class: "btn btn-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+
+= render "admin/shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :date, model_class.human_attribute_name(:date)
+      %th= sortable_header :weekday, model_class.human_attribute_name(:weekday)
+      %th= sortable_header :first_time_visitors, model_class.human_attribute_name(:first_time_visitors)
+      %th= sortable_header :recurring_visitors, model_class.human_attribute_name(:recurring_visitors)
+      %th= sortable_header :average_time_spent, model_class.human_attribute_name(:average_time_spent)
+      %th
+
+  %tbody
+    - daily_visits.each do |daily_visit|
+      %tr
+        %td= link_to daily_visit.date, admin_daily_visit_url(daily_visit)
+        %td= daily_visit.weekday
+        %td= daily_visit.first_time_visitors
+        %td= daily_visit.recurring_visitors
+        %td= daily_visit.average_time_spent
+        %td.text-nowrap
+          - if policy(daily_visit).edit?
+            = link_to edit_admin_daily_visit_url(daily_visit), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
+              %i.fa-solid.fa-pen
+          - if policy(daily_visit).destroy?
+            = link_to admin_daily_visit_url(daily_visit), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+              %i.fa-solid.fa-trash
+
+= add_pagination @daily_visits

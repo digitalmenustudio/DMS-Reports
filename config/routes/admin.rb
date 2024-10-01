@@ -8,5 +8,6 @@ resources :users do
   end
 end
 resources :restaurants
+resources :daily_visits
 
 root "admin#admin"

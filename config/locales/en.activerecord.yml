@@ -14,6 +14,12 @@ en:
         role_list:
           admin: Admin
           user: User
+      daily_visit:
+        date: Date
+        first_time_visitors: First Time Visitors
+        recurring_visitors: Recurring Visitors
+        average_time_spent: Average Time Spent (in minutes)
+        weekday: Weekday
     models:
       restaurant:
         one: Restaurant
@@ -21,6 +27,9 @@ en:
       user:
         one: User
         other: Users
+      daily_visit:
+        one: Daily Visit
+        other: Daily Visits
     notices:
       default:
         archived_successfully: "%{model} archived successfully"

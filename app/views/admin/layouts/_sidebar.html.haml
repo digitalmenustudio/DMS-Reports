@@ -18,6 +18,13 @@
             %i.fa-solid.fa-shop
             = Restaurant.model_name.human(count: 2)
 
+
+      - if policy(DailyVisit).index?
+        %li.nav-item
+          = link_to admin_daily_visits_path, class: "nav-link #{controller_name == "daily_visits" ? "active" : ""}" do
+            %i.fa-solid.fa-calendar-alt
+            = DailyVisit.model_name.human(count: 2)
+
   = link_to t("change_language"), admin_change_locale_path, data: { "turbo-method": "put" }, class: "btn nav-link p-0 text-start mt-2"
 
   - if user_signed_in?
