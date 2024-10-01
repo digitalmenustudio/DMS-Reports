@@ -1,0 +1,28 @@
+- model_class = Item
+- content_for :title do
+  %h1= t '.title', default: model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :name
+  %dd.col-sm-9= @item.name
+  %dt.col-sm-3= model_class.human_attribute_name :item_type
+  %dd.col-sm-9= @item.item_type
+  %dt.col-sm-3= model_class.human_attribute_name :clicks
+  %dd.col-sm-9= @item.clicks
+  %dt.col-sm-3= model_class.human_attribute_name :likes
+  %dd.col-sm-9= @item.likes
+
+- if policy(@item).index?
+  = link_to admin_items_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', default: t("helpers.links.back"))
+
+- if policy(@item).edit?
+  = link_to edit_admin_item_path(@item), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', default: t("helpers.links.edit"))
+
+- if policy(@item).destroy?
+  = link_to admin_item_path(@item), class: "btn btn-danger mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+    %i.fa-solid.fa-trash
+    = t('.destroy', default: t("helpers.links.destroy"))

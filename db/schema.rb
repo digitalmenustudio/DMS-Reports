@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_01_133127) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_01_140732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_133127) do
     t.datetime "updated_at", null: false
     t.index ["date"], name: "index_daily_visits_on_date"
     t.index ["restaurant_id"], name: "index_daily_visits_on_restaurant_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.string "name", null: false
+    t.string "item_type", null: false
+    t.integer "clicks", default: 0, null: false
+    t.integer "likes", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id", "name", "item_type"], name: "index_items_on_restaurant_id_and_name_and_item_type", unique: true
+    t.index ["restaurant_id"], name: "index_items_on_restaurant_id"
   end
 
   create_table "menu_access_logs", force: :cascade do |t|
@@ -75,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_133127) do
   end
 
   add_foreign_key "daily_visits", "restaurants"
+  add_foreign_key "items", "restaurants"
   add_foreign_key "menu_access_logs", "restaurants"
   add_foreign_key "tab_clicks", "restaurants"
   add_foreign_key "users", "restaurants"

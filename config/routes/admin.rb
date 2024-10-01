@@ -11,5 +11,6 @@ resources :restaurants
 resources :daily_visits
 resources :menu_access_logs
 resources :tab_clicks
+resources :items
 
 root "admin#admin"

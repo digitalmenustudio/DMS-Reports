@@ -1,0 +1,33 @@
+- model_class = Item
+- content_for :title do
+  %h1= model_class.model_name.human(count: 2)
+
+- content_for :title_actions do
+  - if policy(Item).create?
+    = link_to new_admin_item_url, class: "btn btn-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :name, model_class.human_attribute_name(:name)
+      %th= sortable_header :item_type, model_class.human_attribute_name(:item_type)
+      %th= sortable_header :clicks, model_class.human_attribute_name(:clicks)
+      %th= sortable_header :likes, model_class.human_attribute_name(:likes)
+      %th
+
+  %tbody
+    - items.each do |item|
+      %tr
+        %td= link_to item.name, admin_item_url(item)
+        %td= item.item_type
+        %td= item.clicks
+        %td= item.likes
+        %td.text-nowrap
+          - if policy(item).edit?
+            = link_to edit_admin_item_url(item), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
+              %i.fa-solid.fa-pen
+          - if policy(item).destroy?
+            = link_to admin_item_url(item), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+              %i.fa-solid.fa-trash
