@@ -1,7 +1,7 @@
 module Admin
   class DailyVisitsController < ApplicationController
     before_action :set_restaurant
-    before_action :set_daily_visit, only: %i[edit update show]
+    before_action :set_daily_visit, only: %i[edit update show destroy]
     before_action -> { authorize @daily_visit || DailyVisit }
 
     decorates_assigned :daily_visit, :daily_visits
@@ -43,6 +43,11 @@ module Admin
       else
         render :edit, status: :unprocessable_entity
       end
+    end
+
+    def destroy
+      @daily_visit.destroy
+      redirect_to admin_daily_visits_path, notice: destroy_successful_notice
     end
 
     private

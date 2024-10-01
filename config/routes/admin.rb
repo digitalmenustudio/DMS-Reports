@@ -12,5 +12,6 @@ resources :daily_visits
 resources :menu_access_logs
 resources :tab_clicks
 resources :items
+resources :promotions
 
 root "admin#admin"

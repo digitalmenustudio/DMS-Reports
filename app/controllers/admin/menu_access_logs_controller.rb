@@ -1,7 +1,7 @@
 module Admin
     class MenuAccessLogsController < ApplicationController
       before_action :set_restaurant
-      before_action :set_menu_access_log, only: %i[edit update show]
+      before_action :set_menu_access_log, only: %i[edit update show destroy]
       before_action -> { authorize @menu_access_log || MenuAccessLog }
   
       decorates_assigned :menu_access_log, :menu_access_logs
@@ -41,6 +41,11 @@ module Admin
         end
       end
   
+      def destroy
+        @item.destroy
+        redirect_to admin_items_path, notice: destroy_successful_notice
+      end
+
       private
   
       # Load the restaurant based on the current user

@@ -32,6 +32,9 @@ fr:
         item_type: Type d'article
         clicks: Clics
         likes: J'aime
+      promotion:
+        name: Nom de la promotion
+        view_count: Nombre de vues
     models:
       restaurant:
         one: Restaurant
@@ -50,13 +53,16 @@ fr:
         other: Visites par jour
       menu_access_log:
         one: Journal d'accès au menu
-        other: Journaux d'accès au menu
+        other: Journal d'accès au menu
       tab_click:
-        one: Clic sur onglet
-        other: Clics sur onglets
+        one: Onglet
+        other: Onglets
       item:
         one: Article
         other: Articles
+      promotion:
+        one: Promotion
+        other: Promotions
     notices:
       default:
         archived_successfully: "%{model} archivé(e) avec succès"

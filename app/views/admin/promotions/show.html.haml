@@ -1,0 +1,24 @@
+- model_class = Promotion
+- content_for :title do
+  %h1= t '.title', default: model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :name
+  %dd.col-sm-9= promotion.name
+  %dt.col-sm-3= model_class.human_attribute_name :view_count
+  %dd.col-sm-9= promotion.view_count
+
+- if policy(promotion).index?
+  = link_to admin_promotions_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', default: t("helpers.links.back"))
+
+- if policy(promotion).edit?
+  = link_to edit_admin_promotion_path(promotion), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', default: t("helpers.links.edit"))
+
+- if policy(promotion).destroy?
+  = link_to admin_promotion_path(promotion), class: "btn btn-danger mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+    %i.fa-solid.fa-trash
+    = t('.destroy', default: t("helpers.links.destroy"))

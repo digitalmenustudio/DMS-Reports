@@ -8,7 +8,7 @@ module Admin
     add_controller_helpers :restaurants, only: :index
 
     def index
-      @restaurants = policy_scope(Restaurant).order(:name)
+      @restaurants = policy_scope(Restaurant).order(:launch_date)
     end
 
     def show

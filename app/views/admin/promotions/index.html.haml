@@ -1,0 +1,29 @@
+- model_class = Promotion
+- content_for :title do
+  %h1= model_class.model_name.human(count: 2)
+
+- content_for :title_actions do
+  - if policy(Promotion).new?
+    = link_to new_admin_promotion_url, class: "btn btn-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :name, model_class.human_attribute_name(:name)
+      %th= sortable_header :view_count, model_class.human_attribute_name(:view_count)
+      %th
+
+  %tbody
+    - promotions.each do |promotion|
+      %tr
+        %td= link_to promotion.name, admin_promotion_url(promotion)
+        %td= promotion.view_count
+        %td.text-nowrap
+          - if policy(promotion).edit?
+            = link_to edit_admin_promotion_url(promotion), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
+              %i.fa-solid.fa-pen
+          - if policy(promotion).destroy?
+            = link_to admin_promotion_url(promotion), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+              %i.fa-solid.fa-trash

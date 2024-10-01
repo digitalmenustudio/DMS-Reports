@@ -33,14 +33,21 @@
       - if policy(TabClick).index?
         %li.nav-item
           = link_to admin_tab_clicks_path, class: "nav-link #{controller_name == "tab_clicks" ? "active" : ""}" do
-            %i.fa-solid.fa-mouse-pointer
+            %i.fa-solid.fa-tags
             = TabClick.model_name.human(count: 2)
 
       - if policy(Item).index?
         %li.nav-item
           = link_to admin_items_path, class: "nav-link #{controller_name == "items" ? "active" : ""}" do
-            %i.fa-solid.fa-utensils
+            %i.fa-solid.fa-cart-shopping
             = Item.model_name.human(count: 2)
+
+      - if policy(Promotion).index?
+        %li.nav-item
+          = link_to admin_promotions_path, class: "nav-link #{controller_name == "promotions" ? "active" : ""}" do
+            %i.fa-solid.fa-rectangle-ad
+            = Promotion.model_name.human(count: 2)
+
 
 
   = link_to t("change_language"), admin_change_locale_path, data: { "turbo-method": "put" }, class: "btn nav-link p-0 text-start mt-2"

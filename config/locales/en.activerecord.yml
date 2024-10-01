@@ -32,6 +32,9 @@ en:
         item_type: Item Type
         clicks: Clicks
         likes: Likes
+      promotion:
+        name: Promotion Name
+        view_count: View Count
     models:
       restaurant:
         one: Restaurant
@@ -46,11 +49,14 @@ en:
         one: Menu Access Log
         other: Menu Access Logs
       tab_click:
-        one: Tab Click
-        other: Tab Clicks
+        one: Tab
+        other: Tabs
       item:
         one: Item
         other: Items
+      promotion:
+        one: Promotion
+        other: Promotions
     notices:
       default:
         archived_successfully: "%{model} archived successfully"

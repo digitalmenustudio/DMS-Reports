@@ -6,7 +6,7 @@
   - if policy(Item).create?
     = link_to new_admin_item_url, class: "btn btn-secondary" do
       %i.fa-solid.fa-plus
-      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+      = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
 
 %table.table
   %thead
