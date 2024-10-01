@@ -1,0 +1,35 @@
+- model_class = MenuAccessLog
+- content_for :title do
+  %h1= model_class.model_name.human count: 2
+
+- content_for :title_actions do
+  - if policy(MenuAccessLog).create?
+    = link_to new_admin_menu_access_log_url, class: "btn btn-secondary" do
+      %i.fa-solid.fa-plus
+      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+
+= render "admin/shared/filter", model_class: model_class
+
+%table.table
+  %thead
+    %tr
+      %th= sortable_header :day_of_week, model_class.human_attribute_name(:day_of_week)
+      %th= sortable_header :time_frame, model_class.human_attribute_name(:time_frame)
+      %th= sortable_header :visitors, model_class.human_attribute_name(:visitors)
+      %th
+
+  %tbody
+    - menu_access_logs.each do |log|
+      %tr
+        %td= link_to log.day_of_week, admin_menu_access_log_url(log)
+        %td= log.time_frame
+        %td= log.visitors
+        %td.text-nowrap
+          - if policy(log).edit?
+            = link_to edit_admin_menu_access_log_url(log), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
+              %i.fa-solid.fa-pen
+          - if policy(log).destroy?
+            = link_to admin_menu_access_log_url(log), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
+              %i.fa-solid.fa-trash
+
+= add_pagination @menu_access_logs

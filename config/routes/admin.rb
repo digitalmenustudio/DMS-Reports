@@ -9,5 +9,6 @@ resources :users do
 end
 resources :restaurants
 resources :daily_visits
+resources :menu_access_logs
 
 root "admin#admin"

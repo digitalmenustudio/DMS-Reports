@@ -1,0 +1,21 @@
+- model_class = MenuAccessLog
+- content_for :title do
+  %h1= t '.title', default: model_class.model_name.human
+
+%dl.row
+  %dt.col-sm-3= model_class.human_attribute_name :day_of_week
+  %dd.col-sm-9= @menu_access_log.day_of_week
+  %dt.col-sm-3= model_class.human_attribute_name :time_frame
+  %dd.col-sm-9= @menu_access_log.time_frame
+  %dt.col-sm-3= model_class.human_attribute_name :visitors
+  %dd.col-sm-9= @menu_access_log.visitors
+
+- if policy(@menu_access_log).index?
+  = link_to admin_menu_access_logs_path, class: "btn btn-outline-secondary mx-1" do
+    %i.fa-solid.fa-chevron-left
+    = t('.back', default: t("helpers.links.back"))
+
+- if policy(@menu_access_log).edit?
+  = link_to edit_admin_menu_access_log_path(@menu_access_log), class: "btn btn-primary mx-1" do
+    %i.fa-solid.fa-edit
+    = t('.edit', default: t("helpers.links.edit"))

@@ -20,6 +20,10 @@ en:
         recurring_visitors: Recurring Visitors
         average_time_spent: Average Time Spent (in minutes)
         weekday: Weekday
+      menu_access_log:
+        day_of_week: Day of the Week
+        time_frame: Time Frame
+        visitors: Visitors
     models:
       restaurant:
         one: Restaurant
@@ -30,6 +34,9 @@ en:
       daily_visit:
         one: Daily Visit
         other: Daily Visits
+      menu_access_log:
+        one: Menu Access Log
+        other: Menu Access Logs
     notices:
       default:
         archived_successfully: "%{model} archived successfully"

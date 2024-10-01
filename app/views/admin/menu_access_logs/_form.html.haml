@@ -1,0 +1,13 @@
+= simple_form_for [:admin, @menu_access_log] do |f|
+  .row.pb-2
+    .col-md-6
+      = f.input :day_of_week, as: :select, collection: %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday], prompt: "Select a day", input_html: { autocomplete: "off" }
+    .col-md-6
+      = f.input :time_frame, as: :select, collection: ['00:00-03:00', '03:00-16:00', '16:00-16:30', '16:30-17:00', '17:00-17:30', '17:30-18:00', '18:00-18:30', '18:30-19:00', '19:00-19:30', '19:30-20:00', '20:00-20:30', '20:30-21:00', '21:00-21:30', '21:30-22:00', '22:00-22:30', '22:30-23:00', '23:00-23:30', '23:30-00:00'], prompt: "Select a time frame", input_html: { autocomplete: "off" }
+
+  .row.pb-2
+    .col-md-6
+      = f.input :visitors, input_html: { autocomplete: "off" }
+
+  = f.submit t("helpers.submit.submit", default: "Submit"), class: "btn btn-success"
+  = link_to t('.cancel', default: t("helpers.links.cancel")), admin_menu_access_logs_path, class: "btn btn-outline-secondary"

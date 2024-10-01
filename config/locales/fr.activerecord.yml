@@ -20,6 +20,10 @@ fr:
         recurring_visitors: Visiteurs récurrents
         average_time_spent: Temps moyen passé (en minutes)
         weekday: Journée
+      menu_access_log:
+        day_of_week: Jour de la semaine
+        time_frame: Plage horaire
+        visitors: Visiteurs
     models:
       restaurant:
         one: Restaurant
@@ -36,6 +40,9 @@ fr:
       daily_visit:
         one: Visite par jour
         other: Visites par jour
+      menu_access_log:
+        one: Journal d'accès au menu
+        other: Journal d'accès au menu
     notices:
       default:
         archived_successfully: "%{model} archivé(e) avec succès"
