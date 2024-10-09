@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_01_153732) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_09_145411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_01_153732) do
     t.decimal "average_time_spent", precision: 5, scale: 2, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "sales"
     t.index ["date"], name: "index_daily_visits_on_date"
     t.index ["restaurant_id"], name: "index_daily_visits_on_restaurant_id"
   end
