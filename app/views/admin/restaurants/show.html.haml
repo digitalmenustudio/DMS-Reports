@@ -17,3 +17,21 @@
   = link_to edit_admin_restaurant_path(@restaurant), class: "btn btn-primary mx-1" do
     %i.fa-solid.fa-edit
     = t('.edit', :default => t("helpers.links.edit"))
+
+- if policy(restaurant).upload_data?
+  = link_to '#', id: 'import-csv', class: 'btn btn-secondary mx-1', data: { bs_toggle: 'modal', bs_target: '#csvUploadModal' } do
+    = content_tag(:i, '', class: 'fa-solid fa-file-arrow-up')
+    
+  = form_with url: upload_data_admin_restaurant_path(restaurant), multipart: true, local: true do |form|
+    .modal.fade#csvUploadModal
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %h5.modal-title Import CSV
+          .modal-body
+            .row.mb-4
+              = form.label :day, 'Select Day of the Week'
+              = form.select :day, options_for_select(Date::DAYNAMES.map(&:downcase), selected: 'monday'), {}, class: 'form-control'
+            = form.file_field :file
+          .modal-footer
+            = form.submit 'Upload', class: 'btn btn-primary'

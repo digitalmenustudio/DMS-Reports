@@ -1,7 +1,7 @@
 module Admin
   class RestaurantsController < ApplicationController
 
-    before_action :set_restaurant, only: %i[edit update show]
+    before_action :set_restaurant, only: %i[edit update show upload_data]
     before_action -> { authorize @restaurant || Restaurant }
 
     decorates_assigned :restaurant, :restaurants
@@ -40,6 +40,22 @@ module Admin
         render :edit, status: :unprocessable_entity
       end
     end
+
+    def upload_data
+      if params[:file].present? && params[:day]
+        begin
+          # Pass the file and the restaurant to a service for handling
+          UploadDataServices::CsvUpload.new(restaurant: @restaurant, file: params[:file], day: params[:day]).run!
+          redirect_to admin_restaurants_path, notice: 'CSV data successfully uploaded.'
+        rescue => e
+          # Handle any errors during processing and redirect back with an alert
+          redirect_to admin_restaurants_path, alert: "Failed to upload CSV data: #{e.message}"
+        end
+      else
+        redirect_to admin_restaurants_path, alert: 'Please upload a valid CSV file.'
+      end
+    end
+    
 
     private
 

@@ -31,3 +31,5 @@
           - if policy(item).destroy?
             = link_to admin_item_url(item), class: "btn btn-danger btn-sm mx-1", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } do
               %i.fa-solid.fa-trash
+
+= add_pagination @items
