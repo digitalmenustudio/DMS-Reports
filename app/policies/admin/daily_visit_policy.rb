@@ -3,7 +3,7 @@ module Admin
       include AdminRestaurantScopedPolicy
   
       def permitted_attributes
-        %i[first_time_visitors recurring_visitors average_time_spent date weekday]
+        %i[first_time_visitors recurring_visitors minutes seconds date weekday sales]
       end
     end
   end

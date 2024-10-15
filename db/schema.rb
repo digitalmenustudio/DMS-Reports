@@ -22,9 +22,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_09_145411) do
     t.string "weekday", null: false
     t.integer "first_time_visitors", default: 0, null: false
     t.integer "recurring_visitors", default: 0, null: false
-    t.decimal "average_time_spent", precision: 5, scale: 2, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "minutes", default: 0, null: false
+    t.integer "seconds", default: 0, null: false
     t.float "sales"
     t.index ["date"], name: "index_daily_visits_on_date"
     t.index ["restaurant_id"], name: "index_daily_visits_on_restaurant_id"

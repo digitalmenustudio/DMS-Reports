@@ -24,7 +24,6 @@ module Admin
     def create
       @daily_visit = @restaurant.daily_visits.new(daily_visit_params)
       set_weekday(@daily_visit)
-      combine_minutes_and_seconds
 
       if @daily_visit.save
         redirect_to admin_daily_visits_path, notice: create_successful_notice
@@ -36,7 +35,6 @@ module Admin
     def update
       @daily_visit.assign_attributes(daily_visit_params)
       set_weekday(@daily_visit)
-      combine_minutes_and_seconds
 
       if @daily_visit.save
         redirect_to admin_daily_visits_path, notice: update_successful_notice
@@ -70,13 +68,6 @@ module Admin
       if daily_visit.date.present?
         daily_visit.weekday = daily_visit.date.strftime("%A")
       end
-    end
-    
-    def combine_minutes_and_seconds
-      minutes = params[:daily_visit][:minutes].to_i
-      seconds = params[:daily_visit][:seconds].to_i
-      total_time_in_minutes = minutes + (seconds / 60.0)
-      @daily_visit.average_time_spent = total_time_in_minutes
     end
   end
 end

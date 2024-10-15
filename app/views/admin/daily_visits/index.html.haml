@@ -6,7 +6,7 @@
   - if policy(DailyVisit).create?
     = link_to new_admin_daily_visit_url, class: "btn btn-secondary" do
       %i.fa-solid.fa-plus
-      = t ".new", default: t("helpers.titles.new", model: model_class.model_name.human)
+      = t ".new", default: t("helpers.titles.newf", model: model_class.model_name.human)
 
 = render "admin/shared/filter", model_class: model_class
 
@@ -18,7 +18,7 @@
       %th= sortable_header :sales, model_class.human_attribute_name(:sales)
       %th= sortable_header :first_time_visitors, model_class.human_attribute_name(:first_time_visitors)
       %th= sortable_header :recurring_visitors, model_class.human_attribute_name(:recurring_visitors)
-      %th= sortable_header :average_time_spent, model_class.human_attribute_name(:average_time_spent)
+      %th= model_class.human_attribute_name(:time_spent)  # Custom header for minutes and seconds
       %th
 
   %tbody
@@ -29,7 +29,7 @@
         %td= daily_visit.sales
         %td= daily_visit.first_time_visitors
         %td= daily_visit.recurring_visitors
-        %td= daily_visit.average_time_spent
+        %td= format_time_spent(daily_visit.minutes, daily_visit.seconds)  # Custom helper
         %td.text-nowrap
           - if policy(daily_visit).edit?
             = link_to edit_admin_daily_visit_url(daily_visit), class: "btn btn-primary btn-sm mx-1", data: { turbo: false } do
