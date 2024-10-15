@@ -65,7 +65,7 @@ module Admin
   
       # Strong parameters to allow only safe attributes
       def tab_click_params
-        params.require(:tab_click).permit(:tab_name, :clicks)
+        permitted_attributes(TabClick)
       end
     end
   end

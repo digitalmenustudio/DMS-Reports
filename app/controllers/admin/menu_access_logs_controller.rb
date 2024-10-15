@@ -8,7 +8,7 @@ module Admin
       add_controller_helpers :menu_access_logs, only: :index
   
       def index
-        @menu_access_logs = policy_scope(MenuAccessLog).where(restaurant: @restaurant).order(day_of_week: :asc, time_frame: :asc)
+        @menu_access_logs = policy_scope(MenuAccessLog).where(restaurant: @restaurant).order(visitors: :desc)
       end
   
       def show
@@ -60,7 +60,7 @@ module Admin
   
       # Strong parameters to allow only permitted attributes
       def menu_access_log_params
-        params.require(:menu_access_log).permit(:day_of_week, :time_frame, :visitors)
+        permitted_attributes(MenuAccessLog)
       end
     end
   end

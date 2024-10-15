@@ -8,7 +8,7 @@ module Admin
       add_controller_helpers :items, only: :index
   
       def index
-        @items = policy_scope(Item).where(restaurant: @restaurant).order(name: :asc)
+        @items = policy_scope(Item).where(restaurant: @restaurant).order(clicks: :desc)
       end
   
       def show

@@ -8,7 +8,7 @@ module Admin
     add_controller_helpers :promotions, only: :index
 
     def index
-      @promotions = policy_scope(Promotion).where(restaurant: @restaurant).order(:name)
+      @promotions = policy_scope(Promotion).where(restaurant: @restaurant).order(view_count: :desc)
     end
 
     def show
@@ -55,7 +55,7 @@ module Admin
     end
 
     def promotion_params
-      params.require(:promotion).permit(:name, :view_count)
+      permitted_attributes(Promotion)
     end
   end
 end

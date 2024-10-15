@@ -34,10 +34,10 @@ module UploadDataServices
   
       def normalize_item_name
         # Remove prefixes (like 'view_item', 'view_favoris_item', 'like_item')
-        normalized_name = @item_name.sub(/(view|like|favoris)_item_/, '')
+        normalized_name = @item_name.sub(/(view|like|view_favoris)_item_/, '')
   
         # Remove 'description' from the end of the name, if present
-        normalized_name.sub!('_description', '')
+        normalized_name.sub!(/_descr\w*$/, '')
   
         # Replace underscores with spaces and capitalize each word
         normalized_name.split('_').map(&:capitalize).join(' ')
