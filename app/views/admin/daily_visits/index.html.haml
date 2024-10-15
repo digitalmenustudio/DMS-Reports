@@ -15,6 +15,7 @@
     %tr
       %th= sortable_header :date, model_class.human_attribute_name(:date)
       %th= sortable_header :weekday, model_class.human_attribute_name(:weekday)
+      %th= sortable_header :sales, model_class.human_attribute_name(:sales)
       %th= sortable_header :first_time_visitors, model_class.human_attribute_name(:first_time_visitors)
       %th= sortable_header :recurring_visitors, model_class.human_attribute_name(:recurring_visitors)
       %th= sortable_header :average_time_spent, model_class.human_attribute_name(:average_time_spent)
@@ -25,6 +26,7 @@
       %tr
         %td= link_to daily_visit.date, admin_daily_visit_url(daily_visit)
         %td= daily_visit.weekday
+        %td= daily_visit.sales
         %td= daily_visit.first_time_visitors
         %td= daily_visit.recurring_visitors
         %td= daily_visit.average_time_spent

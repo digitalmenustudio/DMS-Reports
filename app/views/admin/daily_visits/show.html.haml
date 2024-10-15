@@ -5,6 +5,10 @@
 %dl.row
   %dt.col-sm-3= model_class.human_attribute_name :date
   %dd.col-sm-9= @daily_visit.date
+  %dt.col-sm-3= model_class.human_attribute_name :weekday
+  %dd.col-sm-9= @daily_visit.weekday
+  %dt.col-sm-3= model_class.human_attribute_name :sales
+  %dd.col-sm-9= @daily_visit.sales
   %dt.col-sm-3= model_class.human_attribute_name :first_time_visitors
   %dd.col-sm-9= @daily_visit.first_time_visitors
   %dt.col-sm-3= model_class.human_attribute_name :recurring_visitors
