@@ -16,13 +16,4 @@ Rails.application.routes.draw do
     concerns :localizable
     draw :web
   end
-
-  # Redirect based on authentication status
-  authenticated :user do
-    root to: 'web/sites#home', as: :authenticated_root
-  end
-
-  unauthenticated do
-    root to: 'devise/sessions#new', as: :unauthenticated_root
-  end
 end
