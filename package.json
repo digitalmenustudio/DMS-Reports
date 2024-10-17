@@ -5,9 +5,14 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.10",
     "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
     "esbuild": "^0.24.0",
-    "sass": "^1.79.3"
+    "postcss": "^8.4.47",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.79.3",
+    "tailwindcss": "^3.4.14"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --target=safari11 --outdir=app/assets/builds",
